@@ -137,11 +137,13 @@ source venv/bin/activate
 # Install PyTorch first (CPU-only)
 pip install torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
 
+pip install --upgrade pip setuptools wheel
+
 # Install other dependencies
 pip install -r requirements.txt --only-binary=all
 
 # Verify installation
-python -c "import torch, transformers, sentence_transformers; print('✅ All packages installed')"
+pip install torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
 ```
 
 4. **Automated setup verification:**
