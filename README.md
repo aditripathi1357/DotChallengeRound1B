@@ -112,37 +112,7 @@ joblib==1.3.2
 
 ## 🚀 Getting Started - Multiple Options
 
-### Option 1: 🐳 Docker (Recommended - Ready to Use)
-
-#### Quick Test with Docker
-```bash
-# Pull the pre-built Docker image
-docker pull aditripathi1357/doc_analysis:latest
-
-# Test with included sample data
-docker run --rm aditripathi1357/doc_analysis:latest
-```
-
-#### Docker with Your Own Files
-```bash
-# Create your analysis directory
-mkdir my-analysis && cd my-analysis
-mkdir input/pdfs output
-
-# Add your PDFs
-cp /path/to/your/pdfs/*.pdf input/pdfs/
-
-# Configure your analysis
-echo "Financial analyst with expertise in market research" > input/persona.txt
-echo "Extract key financial metrics and investment insights" > input/job.txt
-
-# Run analysis
-docker run -v "${PWD}/input:/app/input" -v "${PWD}/output:/app/output" aditripathi1357/doc_analysis:latest
-```
-
-**🔗 Docker Hub**: https://hub.docker.com/r/aditripathi1357/doc_analysis
-
-### Option 2: 💻 Local Development Setup
+### Option 1: 💻 Local Development Setup
 
 #### Prerequisites
 - **Python 3.11+** ([Download](https://www.python.org/downloads/))
@@ -303,6 +273,37 @@ print(f'📈 Accuracy: {data[\"metadata\"][\"accuracy_percentage\"]}%')
 "
 ```
 
+### Option 2: 🐳 Docker (Recommended - Ready to Use)
+
+#### Quick Test with Docker
+```bash
+# Pull the pre-built Docker image
+docker pull aditripathi1357/doc_analysis:latest
+
+# Test with included sample data
+docker run --rm aditripathi1357/doc_analysis:latest
+```
+
+#### Docker with Your Own Files
+```bash
+# Create your analysis directory
+mkdir my-analysis && cd my-analysis
+mkdir input/pdfs output
+
+# Add your PDFs
+cp /path/to/your/pdfs/*.pdf input/pdfs/
+
+# Configure your analysis
+echo "Financial analyst with expertise in market research" > input/persona.txt
+echo "Extract key financial metrics and investment insights" > input/job.txt
+
+# Run analysis
+docker run -v "${PWD}/input:/app/input" -v "${PWD}/output:/app/output" aditripathi1357/doc_analysis:latest
+```
+
+**🔗 Docker Hub**: https://hub.docker.com/r/aditripathi1357/doc_analysis
+
+
 ## 📁 Project Structure
 
 ```
@@ -334,33 +335,6 @@ doc_analyzer/
 └── README.md                  # This documentation
 ```
 
-## 🎯 How to Use with Your Own Documents
-
-### Step 1: Prepare Your Documents
-```bash
-# Clear sample PDFs (if using local setup)
-rm input/pdfs/*.pdf
-
-# Add your PDF files
-cp /path/to/your/documents/*.pdf input/pdfs/
-
-# Verify PDFs are added
-ls input/pdfs/
-```
-
-### Step 2: Configure Your Analysis
-```bash
-# Define your persona (who you are)
-echo "Investment analyst with 10+ years experience in equity research and risk assessment" > input/persona.txt
-
-# Define your job (what you want to accomplish)
-echo "Analyze the financial documents and extract key investment insights, growth indicators, and risk factors for decision making" > input/job.txt
-```
-
-### Step 3: Run Analysis
-```bash
-# Local Python
-python src/main.py
 
 # OR Docker
 docker run -v "${PWD}/input:/app/input" -v "${PWD}/output:/app/output" aditripathi1357/doc_analysis:latest
@@ -375,37 +349,6 @@ cat output/challenge1b_output.json
 python -m json.tool output/challenge1b_output.json
 ```
 
-## 📊 Sample Use Cases with Examples
-
-### 1. Academic Research 📚
-```bash
-echo "PhD Researcher in Computational Biology with expertise in machine learning applications" > input/persona.txt
-echo "Prepare a comprehensive literature review focusing on methodologies, datasets, and performance benchmarks for drug discovery" > input/job.txt
-```
-
-### 2. Business Analysis 💼
-```bash
-echo "Senior Investment Analyst with expertise in tech sector analysis and financial modeling" > input/persona.txt
-echo "Analyze revenue trends, R&D investments, and market positioning strategies from annual reports" > input/job.txt
-```
-
-### 3. Educational Content 🎓
-```bash
-echo "Undergraduate Chemistry Student preparing for organic chemistry examinations" > input/persona.txt
-echo "Identify key concepts, reaction mechanisms, and important formulas for exam preparation on reaction kinetics" > input/job.txt
-```
-
-### 4. Travel Planning ✈️ (Pre-configured Sample)
-```bash
-echo "Travel consultant with expertise in European destinations and cultural experiences" > input/persona.txt
-echo "Create a comprehensive travel guide focusing on culture, cuisine, and must-visit attractions" > input/job.txt
-```
-
-### 5. Legal Document Review ⚖️
-```bash
-echo "Legal researcher specializing in contract analysis and regulatory compliance" > input/persona.txt
-echo "Identify key terms, obligations, potential legal risks, and compliance requirements" > input/job.txt
-```
 
 ## 📈 Output Format & Results
 
