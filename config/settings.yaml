@@ -1,0 +1,289 @@
+# Enhanced Document Analysis System Configuration
+# Optimized for Competition Performance and Maximum Accuracy
+
+# Model Configuration - Enhanced
+model:
+  name: "all-MiniLM-L6-v2"
+  max_length: 384
+  cache_dir: "./models/"
+  trust_remote_code: false
+  device: "cpu"
+  batch_size: 16
+  encode_kwargs:
+    normalize_embeddings: true
+    convert_to_tensor: false
+    show_progress_bar: false
+  optimization:
+    use_fast_tokenizer: true
+    low_cpu_mem_usage: true
+
+# Enhanced Processing Configuration
+processing:
+  # Time management (optimized for 60s limit)
+  max_time_seconds: 55
+  pdf_parsing_time_limit: 30
+  nlp_analysis_time_limit: 25
+  
+  # Content filtering
+  min_section_length: 25  # Slightly lower for edge cases
+  max_sections_per_doc: 10  # Increased for better coverage
+  min_word_count: 15
+  max_word_count: 800
+  
+  # Quality and relevance
+  similarity_threshold: 0.22  # Slightly lower for better recall
+  quality_threshold: 0.35  # Balanced quality filtering
+  confidence_threshold: 0.55  # Slightly lower for more results
+  
+  # Performance optimizations
+  enable_fast_mode: true
+  enable_parallel_processing: false  # CPU optimization
+  cpu_optimization: true
+  memory_efficient: true
+  
+  # Enhanced features
+  quality_filtering: true
+  semantic_enhancement: true
+  multi_query_expansion: true
+  adaptive_thresholding: true
+  context_aware_scoring: true
+  domain_adaptation: true
+  
+  # Advanced content analysis
+  content_deduplication: true
+  intelligent_chunking: true
+  cross_document_analysis: true
+  requirement_compliance_checking: true
+
+# Enhanced Output Configuration
+output:
+  json_indent: 2
+  include_metadata: true
+  max_text_length: 320  # Slightly increased
+  enhanced_analysis: true
+  quality_assessment: true
+  recommendations: true
+  
+  # Additional output features
+  include_confidence_scores: true
+  include_component_scores: true
+  include_quality_metrics: true
+  include_processing_stats: true
+  compact_format: false
+  validate_output: true
+  
+  # Content optimization
+  intelligent_text_selection: true
+  preserve_formatting: false
+  remove_redundancy: true
+
+# Enhanced Path Configuration
+paths:
+  input_dir: "./input/"
+  output_dir: "./output/"
+  models_dir: "./models/"
+  temp_dir: "./temp/"
+  cache_dir: "./cache/"
+  logs_dir: "./logs/"
+
+# Enhanced Competition Settings
+competition:
+  enable_time_monitoring: true
+  max_documents: 10
+  min_documents: 1
+  prioritize_accuracy: true
+  cpu_optimization: true
+  memory_limit_mb: 4096
+  
+  # Competition-specific optimizations
+  fast_startup: true
+  aggressive_caching: true
+  skip_non_essential: false
+  emergency_fallback: true
+  time_buffer_seconds: 5
+
+# Enhanced Accuracy Configuration
+accuracy:
+  target_accuracy: 87  # Increased target
+  minimum_confidence: 0.55  # Balanced for more results
+  quality_threshold: 0.35  # Balanced threshold
+  enable_accuracy_tracking: true
+  
+  # Advanced accuracy features
+  multi_metric_evaluation: true
+  adaptive_scoring: true
+  confidence_calibration: true
+  quality_weighted_ranking: true
+  
+  # Accuracy thresholds for different components
+  semantic_threshold: 0.5
+  keyword_threshold: 0.3
+  tfidf_threshold: 0.25
+  compliance_threshold: 0.6
+
+# Enhanced Ranking Configuration
+ranking:
+  # Weight distribution (optimized for competition)
+  semantic_weight: 0.35
+  keyword_weight: 0.25
+  tfidf_weight: 0.15
+  quality_weight: 0.15
+  compliance_weight: 0.10
+  
+  # Advanced ranking features
+  adaptive_weighting: true
+  domain_specific_weighting: true
+  requirement_based_adjustment: true
+  confidence_boost: true
+  
+  # Section selection
+  top_sections_count: 8
+  max_subsections: 6
+  diversity_factor: 0.2
+  quality_bias: 0.3
+
+# Enhanced Text Processing
+text_processing:
+  # Content cleaning
+  aggressive_cleaning: false
+  preserve_structure: true
+  normalize_whitespace: true
+  fix_encoding_issues: true
+  
+  # Section detection
+  enhanced_header_detection: true
+  confidence_based_filtering: true
+  multi_pattern_matching: true
+  context_aware_boundaries: true
+  
+  # Content optimization
+  intelligent_summarization: false  # Too slow for competition
+  key_phrase_extraction: true
+  importance_scoring: true
+  redundancy_removal: true
+
+# Enhanced NLP Configuration
+nlp:
+  # Embedding optimization
+  use_batched_encoding: true
+  optimize_for_cpu: true
+  cache_embeddings: false  # Memory optimization
+  
+  # Query processing
+  query_expansion: true
+  multi_query_generation: true
+  query_optimization: true
+  adaptive_queries: true
+  
+  # Similarity calculation
+  use_cosine_similarity: true
+  normalize_scores: true
+  apply_sigmoid_scaling: false
+  temperature_scaling: 1.0
+  
+  # Advanced NLP features
+  domain_detection: true
+  requirement_extraction: true
+  constraint_checking: true
+  context_enhancement: true
+
+# Enhanced PDF Processing
+pdf:
+  # Extraction methods
+  primary_method: "pdfplumber"
+  fallback_method: "pypdf2"
+  max_extraction_attempts: 2
+  
+  # Text processing
+  clean_extracted_text: true
+  fix_ocr_errors: true
+  normalize_formatting: true
+  preserve_structure: true
+  
+  # Quality control
+  min_text_quality: 0.3
+  skip_image_pages: false
+  handle_encrypted: false
+  timeout_per_page: 10
+
+# Enhanced Error Handling
+error_handling:
+  # Graceful degradation
+  continue_on_errors: true
+  max_error_rate: 0.3
+  fallback_strategies: true
+  
+  # Logging
+  log_level: "WARNING"  # Reduced for competition
+  log_to_file: false
+  detailed_errors: false
+  
+  # Recovery
+  auto_retry: true
+  max_retries: 2
+  retry_delay: 0.1
+
+# Enhanced Caching
+caching:
+  enable_caching: true
+  cache_embeddings: false  # Memory optimization
+  cache_parsed_pdfs: false  # Time vs memory tradeoff
+  cache_tfidf: true
+  cache_timeout: 3600
+
+# Enhanced Monitoring
+monitoring:
+  enable_performance_tracking: true
+  track_memory_usage: false  # Overhead reduction
+  track_timing: true
+  enable_profiling: false  # Competition optimization
+  
+  # Metrics
+  accuracy_monitoring: true
+  quality_monitoring: true
+  confidence_monitoring: true
+  
+  # Alerts
+  time_warnings: true
+  memory_warnings: false
+  quality_warnings: false
+
+# Enhanced Features Toggle
+features:
+  # Core features (always enabled)
+  semantic_analysis: true
+  keyword_matching: true
+  tfidf_analysis: true
+  quality_assessment: true
+  
+  # Advanced features (competition optimized)
+  domain_adaptation: true
+  requirement_compliance: true
+  multi_document_analysis: true
+  confidence_scoring: true
+  
+  # Optional features (disabled for speed)
+  deep_analysis: false
+  cross_validation: false
+  ensemble_methods: false
+  advanced_summarization: false
+
+# Enhanced Debug Configuration (competition disabled)
+debug:
+  enable_debug: false
+  verbose_output: false
+  save_intermediate: false
+  trace_execution: false
+  performance_profiling: false
+
+# Enhanced Experimental Features
+experimental:
+  # Safe experimental features
+  adaptive_thresholding_v2: true
+  enhanced_query_generation: true
+  improved_confidence_calculation: true
+  
+  # Disabled for competition stability
+  neural_reranking: false
+  dynamic_weight_adjustment: false
+  auto_hyperparameter_tuning: false
