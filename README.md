@@ -22,6 +22,12 @@ This system was built to solve the **Document Intelligence Challenge** with the 
   - ✅ No internet access during execution
   - ✅ Generic solution for diverse domains
 
+### 🔬 Sample Test Cases Supported
+1. **Academic Research**: PhD researcher analyzing Graph Neural Networks papers
+2. **Business Analysis**: Investment analyst reviewing annual reports  
+3. **Educational Content**: Student studying organic chemistry textbooks
+4. **Travel Planning**: Travel consultant creating destination guides
+5. **Financial Analysis**: Analyst extracting investment insights
 
 ## 🧠 Document Intelligence System Approach
 
@@ -106,7 +112,37 @@ joblib==1.3.2
 
 ## 🚀 Getting Started - Multiple Options
 
-### Option 1: 💻 Local Development Setup 
+### Option 1: 🐳 Docker (Recommended - Ready to Use)
+
+#### Quick Test with Docker
+```bash
+# Pull the pre-built Docker image
+docker pull aditripathi1357/doc_analysis:latest
+
+# Test with included sample data
+docker run --rm aditripathi1357/doc_analysis:latest
+```
+
+#### Docker with Your Own Files
+```bash
+# Create your analysis directory
+mkdir my-analysis && cd my-analysis
+mkdir input/pdfs output
+
+# Add your PDFs
+cp /path/to/your/pdfs/*.pdf input/pdfs/
+
+# Configure your analysis
+echo "Financial analyst with expertise in market research" > input/persona.txt
+echo "Extract key financial metrics and investment insights" > input/job.txt
+
+# Run analysis
+docker run -v "${PWD}/input:/app/input" -v "${PWD}/output:/app/output" aditripathi1357/doc_analysis:latest
+```
+
+**🔗 Docker Hub**: https://hub.docker.com/r/aditripathi1357/doc_analysis
+
+### Option 2: 💻 Local Development Setup
 
 #### Prerequisites
 - **Python 3.11+** ([Download](https://www.python.org/downloads/))
@@ -137,13 +173,11 @@ source venv/bin/activate
 # Install PyTorch first (CPU-only)
 pip install torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
 
-pip install --upgrade pip setuptools wheel
-
 # Install other dependencies
 pip install -r requirements.txt --only-binary=all
 
 # Verify installation
-pip install torch==2.2.0 --index-url https://download.pytorch.org/whl/cpu
+python -c "import torch, transformers, sentence_transformers; print('✅ All packages installed')"
 ```
 
 4. **Automated setup verification:**
@@ -183,6 +217,92 @@ Loading universal adaptive model: all-MiniLM-L6-v2
 
 **🔗 GitHub Repository**: https://github.com/aditripathi1357/DotChallengeRound1B
 
+#### 6. **Testing with Your Own PDFs (Local Setup):**
+
+Now that you have the system running, let's test it with your own documents:
+
+```bash
+# Clear the sample PDFs
+rm input/pdfs/*.pdf
+
+# Add your own PDF files
+cp /path/to/your/pdfs/*.pdf input/pdfs/
+
+# Or on Windows
+# Remove-Item input\pdfs\*.pdf
+# Copy-Item "C:\path\to\your\pdfs\*.pdf" input\pdfs\
+
+# Verify your PDFs are added
+ls input/pdfs/
+```
+
+**Configure for your specific use case:**
+```bash
+# Example 1: Financial Analysis
+echo "Senior Investment Analyst with 15+ years experience in equity research and risk assessment" > input/persona.txt
+echo "Analyze the financial statements and extract key metrics, growth indicators, profitability ratios, and investment risks for portfolio decision making" > input/job.txt
+
+# Example 2: Academic Research  
+echo "PhD Researcher in Computer Science specializing in machine learning and natural language processing" > input/persona.txt
+echo "Conduct a comprehensive literature review focusing on recent methodologies, experimental results, and research gaps in the field" > input/job.txt
+
+# Example 3: Legal Document Review
+echo "Corporate Legal Counsel with expertise in contract analysis and regulatory compliance" > input/persona.txt
+echo "Review legal documents to identify key contractual terms, obligations, compliance requirements, and potential legal risks" > input/job.txt
+
+# Example 4: Business Strategy
+echo "Management Consultant with experience in market analysis and competitive intelligence" > input/persona.txt
+echo "Extract strategic insights, market trends, competitive positioning, and growth opportunities from business reports" > input/job.txt
+```
+
+**Run your custom analysis:**
+```bash
+python src/main.py
+```
+
+**What you'll see:**
+```
+Loading universal adaptive model: all-MiniLM-L6-v2
+✅ Universal adaptive NLP model loaded
+🚀 Document Analyzer Ready
+📝 Loaded persona from file: [your persona length] chars
+🎯 Loaded job from file: [your job length] chars
+📁 Found [X] PDF files
+📚 Processing [X] documents...
+👤 Persona: [Your persona description...]
+🎯 Job: [Your job description...]
+📄 Processing: [Your document 1]
+  ✅ Found [X] quality sections
+📄 Processing: [Your document 2]
+  ✅ Found [X] quality sections
+🧠 Analyzing content...
+🎯 Detected domain: [automatically detected domain]
+✅ Enhanced adaptive analysis complete: [X] relevant sections
+💾 Output saved to: output/challenge1b_output.json
+📊 Estimated accuracy: [X]% (Time: [X]s)
+✅ Generated [X] sections successfully
+```
+
+**Check your results:**
+```bash
+# View the customized analysis
+cat output/challenge1b_output.json
+
+# Or format nicely
+python -m json.tool output/challenge1b_output.json
+
+# Quick summary
+python -c "
+import json
+data = json.load(open('output/challenge1b_output.json'))
+print(f'📊 Processed: {len(data[\"metadata\"][\"input_documents\"])} documents')
+print(f'📄 Extracted: {len(data[\"extracted_sections\"])} sections')
+print(f'🔍 Analyzed: {len(data[\"subsection_analysis\"])} subsections')
+print(f'🎯 Domain detected: {data[\"metadata\"].get(\"detected_domain\", \"N/A\")}')
+print(f'📈 Accuracy: {data[\"metadata\"][\"accuracy_percentage\"]}%')
+"
+```
+
 ## 📁 Project Structure
 
 ```
@@ -211,40 +331,8 @@ doc_analyzer/
 ├── requirements.txt            # Python dependencies
 ├── Dockerfile                  # Docker configuration
 ├── setup_check.py             # Automated verification script
-└── README.md   # This documentation
+└── README.md                  # This documentation
 ```
-
-
-### Option 2: 🐳 Docker 
-
-#### Quick Test with Docker
-```bash
-# Pull the pre-built Docker image
-docker pull aditripathi1357/doc_analysis:latest
-
-# Test with included sample data
-docker run --rm aditripathi1357/doc_analysis:latest
-```
-
-#### Docker with Your Own Files
-```bash
-# Create your analysis directory
-mkdir my-analysis && cd my-analysis
-mkdir input/pdfs output
-
-# Add your PDFs
-cp /path/to/your/pdfs/*.pdf input/pdfs/
-
-# Configure your analysis
-echo "Financial analyst with expertise in market research" > input/persona.txt
-echo "Extract key financial metrics and investment insights" > input/job.txt
-
-# Run analysis
-docker run -v "${PWD}/input:/app/input" -v "${PWD}/output:/app/output" aditripathi1357/doc_analysis:latest
-```
-
-**🔗 Docker Hub**: https://hub.docker.com/r/aditripathi1357/doc_analysis
-
 
 ## 🎯 How to Use with Your Own Documents
 
@@ -386,6 +474,11 @@ docker run --rm aditripathi1357/doc_analysis:latest echo "✅ Container working"
 python -c "import torch, transformers, sentence_transformers; print('✅ Dependencies OK')"
 ```
 
+### Automated Setup Verification
+```bash
+# Run comprehensive system check
+python setup_check.py
+```
 
 This will verify:
 - ✅ Python version compatibility (3.11+)
