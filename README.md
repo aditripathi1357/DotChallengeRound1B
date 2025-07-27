@@ -206,7 +206,7 @@ Select collection number (1-3): 1
    • Requirements: 0 items
 ```
 
-**Analysis Output:**
+**Analysis Output: First You Have to create all collection Input Json file Then Run **
 
 ```bash
 python src/main.py           # Run analysis

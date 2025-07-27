@@ -1,38 +1,48 @@
-# Ignore unnecessary files during Docker build
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.so
-.pytest_cache/
-.coverage
-.env
-.venv
-env/
-venv/
-
-# Ignore large directories that will be mounted
-output/
-temp/
-cache/
-logs/
-
-# Ignore development files
-.git/
+# Create .dockerignore
+echo '# Version control
+.git
 .gitignore
 *.md
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# IDE files
 .vscode/
 .idea/
-*.log
+*.swp
+*.swo
 
-# Ignore OS files
+# OS files
 .DS_Store
 Thumbs.db
 
-# Ignore test files
-tests/
-test_*.py
+# Logs
+*.log
+*.tmp
 
-# Keep only essential input structure
-input/pdfs/*.pdf
+# Output directories (mounted as volumes)
+output/
+models/
+*.json
+!config/*.json
+
+# Development
+tests/
+.pytest_cache/
+.coverage
+.tox/
+
+# Docker files
+Dockerfile*
+.dockerignore
+docker-compose*.yml
+
+# Large files
+*.pdf' > .dockerignore
