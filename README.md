@@ -207,6 +207,11 @@ Select collection number (1-3): 1
 ```
 
 **Analysis Output:**
+
+```bash
+python src/main.py           # Run analysis
+```
+
 ```
 🚀 Running analysis on 'Collection 1'...
 ⏳ This may take a few minutes...
