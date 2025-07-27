@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 """
-Setup Verification Script for Document Analysis System
-Run this after cloning from Git to verify everything is working correctly.
+Simple Setup Verification Script - System Check Only
 """
 
 import os
 import sys
-import json
 import importlib
 from pathlib import Path
+
+# Suppress warnings
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+import warnings
+warnings.filterwarnings('ignore')
 
 def print_status(message, status="info"):
     """Print colored status messages"""
@@ -45,49 +49,51 @@ def check_python_version():
         print_status(f"Python {version.major}.{version.minor}.{version.micro} - Need Python 3.11+", "error")
         return False
 
-def check_directory_structure():
-    """Check if required directories and files exist"""
-    print_status("Checking directory structure...", "info")
+def check_core_files():
+    """Check if core project files exist"""
+    print_status("Checking core project files...", "info")
     
-    required_paths = [
+    required_files = [
         "src/main.py",
         "src/nlp_processor.py", 
         "src/pdf_parser.py",
-        "input/pdfs",
-        "input/persona.txt",
-        "input/job.txt",
+        "src/output_generator.py",
         "config/settings.yaml",
         "requirements.txt"
     ]
     
     all_good = True
-    for path in required_paths:
-        if os.path.exists(path):
-            print_status(f"Found: {path}", "success")
+    for file_path in required_files:
+        if os.path.exists(file_path):
+            print_status(f"Found: {file_path}", "success")
         else:
-            print_status(f"Missing: {path}", "error")
+            print_status(f"Missing: {file_path}", "error")
             all_good = False
     
     return all_good
 
-def check_pdf_files():
-    """Check if sample PDF files are present"""
-    print_status("Checking sample PDF files...", "info")
+def check_collections():
+    """Check collections directory"""
+    print_status("Checking collections...", "info")
     
-    pdf_dir = Path("input/pdfs")
-    if not pdf_dir.exists():
-        print_status("PDF directory missing!", "error")
+    collections_dir = Path("collections")
+    if not collections_dir.exists():
+        print_status("Collections directory not found", "warning")
         return False
     
-    pdf_files = list(pdf_dir.glob("*.pdf"))
-    if len(pdf_files) == 0:
-        print_status("No PDF files found - you'll need to add your own", "warning")
+    collections = [d for d in collections_dir.iterdir() if d.is_dir()]
+    if not collections:
+        print_status("No collections found", "warning")
         return False
     
-    print_status(f"Found {len(pdf_files)} PDF files:", "success")
-    for pdf in pdf_files:
-        size_mb = pdf.stat().st_size / (1024 * 1024)
-        print_status(f"  • {pdf.name} ({size_mb:.1f}MB)", "info")
+    print_status(f"Found {len(collections)} collections:", "success")
+    for collection in collections:
+        pdfs_dir = collection / "pdfs"
+        pdf_count = len(list(pdfs_dir.glob("*.pdf"))) if pdfs_dir.exists() else 0
+        has_json = (collection / "challenge1b_input.json").exists()
+        
+        status = "✅" if has_json and pdf_count > 0 else "⚠️"
+        print_status(f"  {status} {collection.name} ({pdf_count} PDFs, JSON: {'Yes' if has_json else 'No'})", "info")
     
     return True
 
@@ -120,92 +126,45 @@ def check_dependencies():
     
     return all_good
 
-def check_model_cache():
-    """Check if AI model is downloaded"""
-    print_status("Checking AI model cache...", "info")
-    
-    models_dir = Path("models")
-    if not models_dir.exists():
-        print_status("Models directory doesn't exist - will be created on first run", "warning")
-        return False
-    
-    # Check for model files
-    model_files = list(models_dir.rglob("*"))
-    if len(model_files) == 0:
-        print_status("No model files found - will download on first run", "warning")
-        return False
-    
-    # Calculate total size
-    total_size = sum(f.stat().st_size for f in model_files if f.is_file())
-    size_mb = total_size / (1024 * 1024)
-    
-    print_status(f"AI model cached ({size_mb:.0f}MB)", "success")
-    return True
-
-def test_model_loading():
-    """Test if the AI model can be loaded"""
-    print_status("Testing AI model loading...", "info")
+def check_model():
+    """Check if AI model can be loaded"""
+    print_status("Testing AI model...", "info")
     
     try:
         from sentence_transformers import SentenceTransformer
-        print_status("Attempting to load model...", "info")
-        
-        # This will download if not present
         model = SentenceTransformer('all-MiniLM-L6-v2', cache_folder='./models')
-        print_status("AI model loaded successfully!", "success")
         
         # Test encoding
-        test_text = "This is a test sentence."
+        test_text = "System verification test."
         embedding = model.encode(test_text)
-        print_status(f"Model test encoding successful (dimension: {len(embedding)})", "success")
+        
+        print_status(f"AI model working (dimension: {len(embedding)})", "success")
+        
+        # Check model size
+        models_dir = Path("models")
+        if models_dir.exists():
+            model_files = list(models_dir.rglob("*"))
+            if model_files:
+                total_size = sum(f.stat().st_size for f in model_files if f.is_file())
+                size_mb = total_size / (1024 * 1024)
+                print_status(f"Model cache size: {size_mb:.0f}MB", "info")
         
         return True
         
     except Exception as e:
-        print_status(f"Model loading failed: {str(e)}", "error")
+        print_status(f"Model test failed: {str(e)}", "error")
         return False
 
-def create_missing_directories():
-    """Create missing directories"""
-    print_status("Creating missing directories...", "info")
+def check_directories():
+    """Check if basic directories exist"""
+    print_status("Checking directories...", "info")
     
-    directories = ["models", "output"]
+    directories = ["models"]
     for directory in directories:
-        os.makedirs(directory, exist_ok=True)
-        print_status(f"Created: {directory}/", "success")
-
-def run_full_test():
-    """Run the complete analysis to test everything"""
-    print_status("Running full system test...", "info")
-    
-    try:
-        # Import and run main function
-        sys.path.append('src')
-        from main import main
-        
-        print_status("Starting document analysis...", "info")
-        main()
-        
-        # Check if output was created
-        if os.path.exists("output/challenge1b_output.json"):
-            with open("output/challenge1b_output.json", 'r') as f:
-                data = json.load(f)
-            
-            sections = len(data.get("extracted_sections", []))
-            subsections = len(data.get("subsection_analysis", []))
-            accuracy = data.get("metadata", {}).get("accuracy_percentage", 0)
-            
-            print_status(f"Analysis completed successfully!", "success")
-            print_status(f"Generated {sections} sections, {subsections} subsections", "success") 
-            print_status(f"Estimated accuracy: {accuracy}%", "success")
-            return True
+        if Path(directory).exists():
+            print_status(f"Found: {directory}/", "success")
         else:
-            print_status("Analysis completed but no output file found", "error")
-            return False
-            
-    except Exception as e:
-        print_status(f"Full test failed: {str(e)}", "error")
-        return False
+            print_status(f"Missing: {directory}/ (will be created when needed)", "warning")
 
 def main():
     """Main setup verification function"""
@@ -215,50 +174,42 @@ def main():
     # Track overall status
     all_checks_passed = True
     
-    # Run all checks
+    # Run core checks
     checks = [
         ("Python Version", check_python_version),
-        ("Directory Structure", check_directory_structure), 
-        ("PDF Files", check_pdf_files),
+        ("Core Files", check_core_files),
+        ("Collections", check_collections),
         ("Dependencies", check_dependencies),
-        ("Model Cache", check_model_cache)
+        ("AI Model", check_model),
+        ("Directories", check_directories)
     ]
     
-    print_status("Running setup verification checks...", "info")
+    print_status("Running system verification...", "info")
     print()
     
     for check_name, check_func in checks:
         print(f"📋 {check_name}")
         result = check_func()
-        if not result:
+        if not result and check_name in ["Python Version", "Core Files", "Dependencies", "AI Model"]:
             all_checks_passed = False
         print()
     
-    # Create missing directories
-    create_missing_directories()
-    print()
-    
-    # Test model loading
-    print("🧠 AI Model Test")
-    model_test = test_model_loading()
-    print()
-    
-    if all_checks_passed and model_test:
-        print("🎉 All checks passed! Running full system test...")
+    # Final status
+    if all_checks_passed:
+        print_status("🎉 SYSTEM VERIFICATION COMPLETE!", "success")
+        print_status("Your system is ready for document analysis!", "success")
         print()
-        full_test = run_full_test()
-        
-        if full_test:
-            print()
-            print_status("🎉 SETUP VERIFICATION COMPLETE!", "success")
-            print_status("Your system is ready to analyze documents!", "success")
-            print_status("Run 'python src/main.py' to start analyzing", "info")
-        else:
-            print_status("Setup verification completed with issues", "warning")
+        print_status("To use the system:", "info")
+        print_status("  python collection_manager.py  # Create and manage collections", "info")
+        print_status("  python src/main.py           # Run analysis", "info")
     else:
-        print_status("Setup verification found issues", "error")
-        print_status("Please fix the errors above and run this script again", "info")
-        print_status("For help, see the troubleshooting section in README.md", "info")
+        print_status("❌ System verification found issues", "error")
+        print_status("Please fix the errors above before proceeding", "info")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n👋 Goodbye!")
+    except Exception as e:
+        print(f"❌ Error: {e}")

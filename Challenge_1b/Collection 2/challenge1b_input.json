@@ -1,0 +1,77 @@
+{
+  "challenge_info": {
+    "challenge_id": "round_1b_collection_2",
+    "test_case_name": "collection_2_analysis",
+    "description": "Create and manage fillable forms for onboarding and compliance."
+  },
+  "documents": [
+    {
+      "filename": "Learn Acrobat - Create and Convert_1.pdf",
+      "title": "Learn Acrobat   Create And Convert 1"
+    },
+    {
+      "filename": "Learn Acrobat - Create and Convert_2.pdf",
+      "title": "Learn Acrobat   Create And Convert 2"
+    },
+    {
+      "filename": "Learn Acrobat - Edit_1.pdf",
+      "title": "Learn Acrobat   Edit 1"
+    },
+    {
+      "filename": "Learn Acrobat - Edit_2.pdf",
+      "title": "Learn Acrobat   Edit 2"
+    },
+    {
+      "filename": "Learn Acrobat - Export_1.pdf",
+      "title": "Learn Acrobat   Export 1"
+    },
+    {
+      "filename": "Learn Acrobat - Export_2.pdf",
+      "title": "Learn Acrobat   Export 2"
+    },
+    {
+      "filename": "Learn Acrobat - Fill and Sign.pdf",
+      "title": "Learn Acrobat   Fill And Sign"
+    },
+    {
+      "filename": "Learn Acrobat - Generative AI_1.pdf",
+      "title": "Learn Acrobat   Generative Ai 1"
+    },
+    {
+      "filename": "Learn Acrobat - Generative AI_2.pdf",
+      "title": "Learn Acrobat   Generative Ai 2"
+    },
+    {
+      "filename": "Learn Acrobat - Request e-signatures_1.pdf",
+      "title": "Learn Acrobat   Request E Signatures 1"
+    },
+    {
+      "filename": "Learn Acrobat - Request e-signatures_2.pdf",
+      "title": "Learn Acrobat   Request E Signatures 2"
+    },
+    {
+      "filename": "Learn Acrobat - Share_1.pdf",
+      "title": "Learn Acrobat   Share 1"
+    },
+    {
+      "filename": "Learn Acrobat - Share_2.pdf",
+      "title": "Learn Acrobat   Share 2"
+    },
+    {
+      "filename": "Test Your Acrobat Exporting Skills.pdf",
+      "title": "Test Your Acrobat Exporting Skills"
+    },
+    {
+      "filename": "The Ultimate PDF Sharing Checklist.pdf",
+      "title": "The Ultimate Pdf Sharing Checklist"
+    }
+  ],
+  "persona": {
+    "role": "HR professional"
+  },
+  "job_to_be_done": {
+    "task": "Create and manage fillable forms for onboarding and compliance.",
+    "requirements": [],
+    "deliverable": "Comprehensive analysis and insights from documents"
+  }
+}

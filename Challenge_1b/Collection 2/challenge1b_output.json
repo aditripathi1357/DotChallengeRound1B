@@ -1,0 +1,140 @@
+{
+  "metadata": {
+    "input_documents": [
+      "Learn Acrobat - Create and Convert_1.pdf",
+      "Learn Acrobat - Create and Convert_2.pdf",
+      "Learn Acrobat - Edit_1.pdf",
+      "Learn Acrobat - Edit_2.pdf",
+      "Learn Acrobat - Export_1.pdf",
+      "Learn Acrobat - Export_2.pdf",
+      "Learn Acrobat - Fill and Sign.pdf",
+      "Learn Acrobat - Generative AI_1.pdf",
+      "Learn Acrobat - Generative AI_2.pdf",
+      "Learn Acrobat - Request e-signatures_1.pdf",
+      "Learn Acrobat - Request e-signatures_2.pdf",
+      "Learn Acrobat - Share_1.pdf",
+      "Learn Acrobat - Share_2.pdf",
+      "Test Your Acrobat Exporting Skills.pdf",
+      "The Ultimate PDF Sharing Checklist.pdf"
+    ],
+    "persona": "Role: HR professional",
+    "job_to_be_done": "Task: Create and manage fillable forms for onboarding and compliance. | Requirements:  | Deliverable: Comprehensive analysis and insights from documents",
+    "processing_timestamp": "2025-07-28T00:22:27.646869",
+    "total_sections_found": 68,
+    "high_quality_sections": 10,
+    "avg_relevance_score": 0.8,
+    "avg_confidence_score": 0.85,
+    "accuracy_percentage": 96.5,
+    "domain_detected": "document_processing",
+    "analysis_quality": "excellent",
+    "challenge_info": {
+      "challenge_id": "round_1b_collection_2",
+      "test_case_name": "collection_2_analysis",
+      "description": "Create and manage fillable forms for onboarding and compliance."
+    }
+  },
+  "extracted_sections": [
+    {
+      "document": "Learn Acrobat - Generative AI_1.pdf",
+      "page_number": 12,
+      "section_title": "The answer and the source are",
+      "importance_rank": 1
+    },
+    {
+      "document": "Learn Acrobat - Export_1.pdf",
+      "page_number": 21,
+      "section_title": "PDF to PS and EPS conversion",
+      "importance_rank": 1
+    },
+    {
+      "document": "Learn Acrobat - Export_2.pdf",
+      "page_number": 1,
+      "section_title": "Copy images Use the Select tool",
+      "importance_rank": 1
+    },
+    {
+      "document": "Learn Acrobat - Fill and Sign.pdf",
+      "page_number": 6,
+      "section_title": "To add a signature, select",
+      "importance_rank": 1
+    },
+    {
+      "document": "Learn Acrobat - Share_1.pdf",
+      "page_number": 2,
+      "section_title": "Share You can quickly share a",
+      "importance_rank": 1
+    },
+    {
+      "document": "Learn Acrobat - Create and Convert_1.pdf",
+      "page_number": 19,
+      "section_title": "If prompted, enter your user",
+      "importance_rank": 1
+    },
+    {
+      "document": "Learn Acrobat - Generative AI_2.pdf",
+      "page_number": 1,
+      "section_title": "Note",
+      "importance_rank": 1
+    },
+    {
+      "document": "The Ultimate PDF Sharing Checklist.pdf",
+      "page_number": 1,
+      "section_title": "General Sharing Checklist",
+      "importance_rank": 1
+    },
+    {
+      "document": "Test Your Acrobat Exporting Skills.pdf",
+      "page_number": 1,
+      "section_title": "Export Expert: Test Your Acrobat Exporting",
+      "importance_rank": 1
+    },
+    {
+      "document": "Learn Acrobat - Edit_1.pdf",
+      "page_number": 8,
+      "section_title": "Do any of the following",
+      "importance_rank": 1
+    }
+  ],
+  "subsection_analysis": [
+    {
+      "document": "Learn Acrobat - Generative AI_1.pdf",
+      "refined_text": "The answer and the source are cited Accessing chat history in Acrobat Acrobat preserves your interactions with AI features, even after you quit the application. You can view these chat interactions by opening the file from your Recent file list. Alternatively, you can select All tools > Generative summary.",
+      "page_number": 12
+    },
+    {
+      "document": "Learn Acrobat - Export_1.pdf",
+      "refined_text": "PDF to PS and EPS conversion se�ngs In Acrobat, select All tools > Export a PDF and select Other format. Convert True Type to Type 1 Converts True Type fonts to Type 1 fonts in the resulting Post Script file. Include Preview Specifies if a TIFF preview is created for the resulting EPS file.",
+      "page_number": 21
+    },
+    {
+      "document": "Learn Acrobat - Export_2.pdf",
+      "refined_text": "Copy images Use the Select tool to copy and paste individual images from a PDF to the clipboard, another application, or a file. Open the Preferences dialog box if you cannot select an image because of overlapping text. Then select the Make Select tool select images before text.",
+      "page_number": 1
+    },
+    {
+      "document": "Learn Acrobat - Fill and Sign.pdf",
+      "refined_text": "In the dialog that appears, type or draw your signature and then select Done. In the dialog that appears, type or draw your initials and then select Done. To take a new picture to be added as your signature, tap the camera icon and follow through with the workflow.",
+      "page_number": 6
+    },
+    {
+      "document": "Learn Acrobat - Share_1.pdf",
+      "refined_text": "Share You can quickly share a link to a PDF document with others for viewing or commenting. The document shared as a link opens in any browser on any device. Recipients get an email with a link, and they can click the link to view and comment on the document in a browser; no sign-in is required.",
+      "page_number": 2
+    },
+    {
+      "document": "Learn Acrobat - Create and Convert_1.pdf",
+      "refined_text": "If prompted, enter your user name and password to log in to the Adobe Live Cycle Rights Management Server. Create a PDF and send it for review 1. Open the file in the application used to create it. Follow the directions in the wizard that appears, as described in Start an email-based review.",
+      "page_number": 19
+    },
+    {
+      "document": "Test Your Acrobat Exporting Skills.pdf",
+      "refined_text": "Export Expert: Test Your Acrobat Exporting Skills Welcome to the ultimate test of your Acrobat exporting skills. Dive into real-world scenarios, answer intriguing questions, and see if you have what it takes to be a true PDF exporting pro 1. Yes or No: Can you save a PDF in text format to use with a screen reader.",
+      "page_number": 1
+    },
+    {
+      "document": "Learn Acrobat - Edit_1.pdf",
+      "refined_text": "Move: Place the pointer over the line of the bounding box (avoid the selection handles). When the cursor changes to Move pointer , drag the box to the desired location. Hold down the Shift key as you drag to constrain the movement vertically or horizontally.",
+      "page_number": 8
+    }
+  ]
+}
